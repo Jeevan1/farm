@@ -1,0 +1,295 @@
+{
+  "desktopMenu": [
+    { "name": "Home", "route": "/" },
+    { "name": "About", "route": "/about" },
+    { "name": "Services", "route": "/services" },
+    { "name": "Tools & Products", "route": "/products" },
+    { "name": "Sellers", "route": "/sellers" },
+    { "name": "Contact", "route": "/contact" },
+    { "name": "Join as Seller", "route": "/join-seller" }
+  ],
+  "authLinks": [
+    { "name": "Sign In", "route": "/signin", "button": true },
+    { "name": "Register", "route": "/register", "button": false }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Organic Fertilizer",
+      "description": "Premium quality nutrients for all crops",
+      "price": 24.99,
+      "category": "fertilizers",
+      "image": "https://images.unsplash.com/photo-1598740717605-fe966fac397c?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "GreenGrow Organics"
+    },
+    {
+      "id": 2,
+      "name": "Garden Tools Set",
+      "description": "Complete set for your farming needs",
+      "price": 89.99,
+      "category": "tools",
+      "image": "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "FarmEquip Pro"
+    },
+    {
+      "id": 3,
+      "name": "Premium Seeds Pack",
+      "description": "Assorted vegetable seeds - high yield",
+      "price": 12.5,
+      "category": "seeds",
+      "image": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "HarvestSeeds Co"
+    },
+    {
+      "id": 4,
+      "name": "Irrigation System",
+      "description": "Water-saving drip irrigation kit",
+      "price": 149.99,
+      "category": "irrigation",
+      "image": "https://images.unsplash.com/photo-1621447979829-dbd07d96c9f7?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "WaterWise Solutions"
+    },
+    {
+      "id": 5,
+      "name": "Soil pH Tester",
+      "description": "Digital soil analyzer for precise readings",
+      "price": 39.95,
+      "category": "tools",
+      "image": "https://images.unsplash.com/photo-1604567363938-0d6c149dedb4?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "TechFarm Devices"
+    },
+    {
+      "id": 6,
+      "name": "Organic Pest Control",
+      "description": "Natural solution for garden pests",
+      "price": 19.95,
+      "category": "pesticides",
+      "image": "https://images.unsplash.com/photo-1594761077961-cadd5ce50f0e?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "EcoDefense"
+    },
+    {
+      "id": 7,
+      "name": "Heirloom Tomato Seeds",
+      "description": "Variety pack of 5 tomato strains",
+      "price": 8.99,
+      "category": "seeds",
+      "image": "https://images.unsplash.com/photo-1592841200172-0d5f83c50eef?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "HarvestSeeds Co"
+    },
+    {
+      "id": 8,
+      "name": "Premium Pruning Shears",
+      "description": "Professional-grade garden trimmer",
+      "price": 34.5,
+      "category": "tools",
+      "image": "https://images.unsplash.com/photo-1554351767-54efa139ffda?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "FarmEquip Pro"
+    },
+    {
+      "id": 9,
+      "name": "Compost Bin",
+      "description": "80-gallon outdoor composter",
+      "price": 79.95,
+      "category": "equipment",
+      "image": "https://images.unsplash.com/photo-1591635566278-10dca0ca76ee?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "GreenGrow Organics"
+    },
+    {
+      "id": 10,
+      "name": "Weather Station",
+      "description": "Professional farm weather monitoring",
+      "price": 129.99,
+      "category": "equipment",
+      "image": "https://images.unsplash.com/photo-1609081388177-a3250e067755?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "TechFarm Devices"
+    },
+    {
+      "id": 11,
+      "name": "Microgreens Growing Kit",
+      "description": "Complete starter kit for microgreens",
+      "price": 45,
+      "category": "seeds",
+      "image": "https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "HarvestSeeds Co"
+    },
+    {
+      "id": 12,
+      "name": "Farm Management Software",
+      "description": "Annual subscription for farm planning",
+      "price": 199.99,
+      "category": "software",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "seller": "TechFarm Devices"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "Farm Record Keeping",
+      "description": "Keep detailed records of all your farming activities, from planting to harvest, in one organized place.",
+      "icon": "FileText",
+      "bgColor": "bg-green-100"
+    },
+    {
+      "id": 2,
+      "title": "Crop Planning Assistance",
+      "description": "Get smart suggestions for crop rotation, planting times, and resource allocation based on your farm data.",
+      "icon": "Leaf",
+      "bgColor": "bg-green-100"
+    },
+    {
+      "id": 3,
+      "title": "Weather Tips",
+      "description": "Receive timely weather alerts and farming recommendations based on local forecast data.",
+      "icon": "CloudSun",
+      "bgColor": "bg-green-100"
+    },
+    {
+      "id": 4,
+      "title": "Inventory Tracking",
+      "description": "Monitor your seeds, tools, fertilizers, and other farm essentials with our simple inventory system.",
+      "icon": "Package",
+      "bgColor": "bg-green-100"
+    },
+    {
+      "id": 5,
+      "title": "Seller & Product Recommendations",
+      "description": "Discover trusted sellers and quality products tailored to your specific farming needs.",
+      "icon": "ShoppingBag",
+      "bgColor": "bg-green-100"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Fertilizers",
+      "image": "https://images.unsplash.com/photo-1598740717605-fe966fac397c?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 2,
+      "name": "Seeds",
+      "image": "https://images.unsplash.com/photo-1604567363938-0d6c149dedb4?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 3,
+      "name": "Tools",
+      "image": "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 4,
+      "name": "Equipment",
+      "image": "https://images.unsplash.com/photo-1591635566278-10dca0ca76ee?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 5,
+      "name": "Software",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800"
+    }
+  ],
+  "sellers": [
+    {
+      "id": 1,
+      "name": "GreenGrow Organics",
+      "description": "Specializing in organic fertilizers and soil amendments for sustainable farming.",
+      "image": "https://images.unsplash.com/photo-1560179304-6fc1d8749b23?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Portland, OR",
+      "phone": "(503) 555-0123",
+      "email": "contact@greengrow.com",
+      "website": "greengrow.com",
+      "categories": ["fertilizers", "soil", "organic"],
+      "verified": true,
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "FarmEquip Pro",
+      "description": "Quality farming tools and equipment for small to medium-sized farms.",
+      "image": "https://images.unsplash.com/photo-1587582345426-bf07d532ebc1?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Milwaukee, WI",
+      "phone": "(414) 555-0189",
+      "email": "sales@farmequippro.com",
+      "website": "farmequippro.com",
+      "categories": ["tools", "equipment", "machinery"],
+      "verified": true,
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "HarvestSeeds Co",
+      "description": "Premium seeds for all crops, specializing in heirloom varieties and organic options.",
+      "image": "https://images.unsplash.com/photo-1531209039190-225c31e70f6e?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Des Moines, IA",
+      "phone": "(515) 555-0142",
+      "email": "info@harvestseeds.com",
+      "website": "harvestseeds.com",
+      "categories": ["seeds", "organic", "heirloom"],
+      "verified": true,
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "WaterWise Solutions",
+      "description": "Innovative irrigation systems designed for water conservation and optimal crop yield.",
+      "image": "https://images.unsplash.com/photo-1473163182517-00dad5be44f9?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Fresno, CA",
+      "phone": "(559) 555-0176",
+      "email": "support@waterwise.com",
+      "website": "waterwise-solutions.com",
+      "categories": ["irrigation", "water conservation", "equipment"],
+      "verified": true,
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "TechFarm Devices",
+      "description": "Cutting-edge technology solutions for modern farming operations.",
+      "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Austin, TX",
+      "phone": "(512) 555-0133",
+      "email": "sales@techfarm.com",
+      "website": "techfarmdevices.com",
+      "categories": ["technology", "monitoring", "software"],
+      "verified": true,
+      "featured": true
+    },
+    {
+      "id": 6,
+      "name": "EcoDefense",
+      "description": "Environmentally friendly pest control products for organic farming.",
+      "image": "https://images.unsplash.com/photo-1560749003-f4b1e17e2dff?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Burlington, VT",
+      "phone": "(802) 555-0198",
+      "email": "info@ecodefense.com",
+      "website": "ecodefense-farm.com",
+      "categories": ["pest control", "organic", "certification"],
+      "verified": true,
+      "featured": false
+    },
+    {
+      "id": 7,
+      "name": "Midwest Tractor Supply",
+      "description": "Full-service dealer of new and used tractors and farm implements.",
+      "image": "https://images.unsplash.com/photo-1570862346889-ae08604ec321?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Omaha, NE",
+      "phone": "(402) 555-0155",
+      "email": "sales@midwesttractor.com",
+      "website": "midwest-tractor.com",
+      "categories": ["tractors", "machinery", "equipment"],
+      "verified": true,
+      "featured": false
+    },
+    {
+      "id": 8,
+      "name": "Heritage Barn Materials",
+      "description": "Quality building materials and supplies for farm structures.",
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
+      "location": "Nashville, TN",
+      "phone": "(615) 555-0162",
+      "email": "contact@heritagebarn.com",
+      "website": "heritage-barn.com",
+      "categories": ["construction", "supplies", "buildings"],
+      "verified": true,
+      "featured": false
+    }
+  ]
+}

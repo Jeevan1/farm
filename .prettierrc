@@ -1,0 +1,11 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app/globals.css",
+  "tailwindConfig": "./tailwind.config.ts",
+  "htmlWhitespaceSensitivity": "ignore",
+  "tailwindPreserveWhitespace": true,
+  "tailwindPreserveDuplicates": true,
+  "singleQuote": true,
+  "semi": true,
+  "endOfLine": "lf"
+}
