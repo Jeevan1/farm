@@ -20,7 +20,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const baseStyles =
-    'rounded-md text-md font-medium transition-colors duration-100 px-3 py-1';
+    'rounded-md text-md font-medium transition-colors duration-100 px-3 py-1 cursor-pointer';
 
   const variantStyles =
     variant === 'primary'

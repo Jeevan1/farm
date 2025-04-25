@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const CTASection = () => {
   return (
-    <section className="bg-primary py-16 text-white">
+    <section className="bg-secondary py-16 text-white">
       <div className="container">
         <h2 className="mx-auto mb-4 max-w-3xl text-center text-3xl font-bold md:text-4xl">
           Ready to Grow with AgroConnect?
