@@ -12,6 +12,7 @@
     { "name": "Sign In", "route": "/signin", "button": true },
     { "name": "Register", "route": "/register", "button": false }
   ],
+
   "products": [
     {
       "id": 1,
@@ -20,7 +21,19 @@
       "price": 24.99,
       "category": "fertilizers",
       "image": "https://images.unsplash.com/photo-1598740717605-fe966fac397c?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "GreenGrow Organics"
+      "seller": "GreenGrow Organics",
+      "features": [
+        "Rich in nitrogen, phosphorus, and potassium",
+        "100% organic compost-based formula",
+        "Safe for vegetables and flowers",
+        "Improves soil texture and fertility"
+      ],
+      "specifications": {
+        "weight": "5 kg",
+        "dimensions": "30 x 20 x 10 cm",
+        "materials": "Organic plant and manure compost",
+        "care": "Store in cool, dry place"
+      }
     },
     {
       "id": 2,
@@ -29,7 +42,19 @@
       "price": 89.99,
       "category": "tools",
       "image": "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "FarmEquip Pro"
+      "seller": "FarmEquip Pro",
+      "features": [
+        "Ergonomic handles",
+        "Rust-resistant metal",
+        "Includes trowel, pruners, and rake",
+        "Compact and durable storage case"
+      ],
+      "specifications": {
+        "weight": "3.2 kg",
+        "dimensions": "40 x 25 x 10 cm",
+        "materials": "Carbon steel, rubber handles",
+        "care": "Wipe clean after use"
+      }
     },
     {
       "id": 3,
@@ -38,7 +63,19 @@
       "price": 12.5,
       "category": "seeds",
       "image": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "HarvestSeeds Co"
+      "seller": "HarvestSeeds Co",
+      "features": [
+        "Non-GMO certified",
+        "High germination rate",
+        "Assorted seasonal vegetables",
+        "Ideal for small farms and gardens"
+      ],
+      "specifications": {
+        "weight": "300 g",
+        "dimensions": "15 x 10 x 5 cm",
+        "materials": "Heirloom vegetable seeds",
+        "care": "Store in a dry, cool place"
+      }
     },
     {
       "id": 4,
@@ -47,7 +84,19 @@
       "price": 149.99,
       "category": "irrigation",
       "image": "https://images.unsplash.com/photo-1621447979829-dbd07d96c9f7?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "WaterWise Solutions"
+      "seller": "WaterWise Solutions",
+      "features": [
+        "Customizable layout",
+        "Reduces water waste",
+        "Easy DIY installation",
+        "Includes timer and filters"
+      ],
+      "specifications": {
+        "weight": "6 kg",
+        "dimensions": "50 x 40 x 20 cm",
+        "materials": "Plastic tubing, brass connectors",
+        "care": "Flush system monthly to prevent clogs"
+      }
     },
     {
       "id": 5,
@@ -56,7 +105,19 @@
       "price": 39.95,
       "category": "tools",
       "image": "https://images.unsplash.com/photo-1604567363938-0d6c149dedb4?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "TechFarm Devices"
+      "seller": "TechFarm Devices",
+      "features": [
+        "Accurate pH readings in seconds",
+        "LCD display for easy reading",
+        "Battery-powered and portable",
+        "Auto-off to conserve power"
+      ],
+      "specifications": {
+        "weight": "180 g",
+        "dimensions": "25 x 4 x 3 cm",
+        "materials": "ABS plastic, stainless steel probe",
+        "care": "Clean probe after each use"
+      }
     },
     {
       "id": 6,
@@ -65,7 +126,19 @@
       "price": 19.95,
       "category": "pesticides",
       "image": "https://images.unsplash.com/photo-1594761077961-cadd5ce50f0e?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "EcoDefense"
+      "seller": "EcoDefense",
+      "features": [
+        "Biodegradable and eco-safe",
+        "Effective against common insects",
+        "Non-toxic to pets and humans",
+        "Spray bottle for easy application"
+      ],
+      "specifications": {
+        "weight": "1.2 L",
+        "dimensions": "30 x 12 x 6 cm",
+        "materials": "Neem oil, essential plant oils",
+        "care": "Shake well before use"
+      }
     },
     {
       "id": 7,
@@ -74,7 +147,19 @@
       "price": 8.99,
       "category": "seeds",
       "image": "https://images.unsplash.com/photo-1592841200172-0d5f83c50eef?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "HarvestSeeds Co"
+      "seller": "HarvestSeeds Co",
+      "features": [
+        "5 unique tomato varieties",
+        "Perfect for containers or gardens",
+        "High productivity",
+        "Open-pollinated, heirloom seeds"
+      ],
+      "specifications": {
+        "weight": "150 g",
+        "dimensions": "12 x 8 x 3 cm",
+        "materials": "Tomato seeds",
+        "care": "Keep seeds dry until planting"
+      }
     },
     {
       "id": 8,
@@ -83,7 +168,19 @@
       "price": 34.5,
       "category": "tools",
       "image": "https://images.unsplash.com/photo-1554351767-54efa139ffda?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "FarmEquip Pro"
+      "seller": "FarmEquip Pro",
+      "features": [
+        "Precision-ground steel blade",
+        "Non-slip ergonomic grip",
+        "Easy locking mechanism",
+        "Rust-proof coating"
+      ],
+      "specifications": {
+        "weight": "500 g",
+        "dimensions": "20 x 6 x 3 cm",
+        "materials": "Steel, rubber grip",
+        "care": "Clean and oil blades after use"
+      }
     },
     {
       "id": 9,
@@ -92,7 +189,19 @@
       "price": 79.95,
       "category": "equipment",
       "image": "https://images.unsplash.com/photo-1591635566278-10dca0ca76ee?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "GreenGrow Organics"
+      "seller": "GreenGrow Organics",
+      "features": [
+        "Large capacity for yard waste",
+        "UV-resistant plastic",
+        "Ventilation system for quick composting",
+        "Hinged lid with lock"
+      ],
+      "specifications": {
+        "weight": "12 kg",
+        "dimensions": "90 x 60 x 60 cm",
+        "materials": "Recycled HDPE plastic",
+        "care": "Rinse and air-dry monthly"
+      }
     },
     {
       "id": 10,
@@ -101,7 +210,19 @@
       "price": 129.99,
       "category": "equipment",
       "image": "https://images.unsplash.com/photo-1609081388177-a3250e067755?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "TechFarm Devices"
+      "seller": "TechFarm Devices",
+      "features": [
+        "Real-time weather data",
+        "Wireless connectivity",
+        "Multi-sensor for temp, humidity, and rainfall",
+        "Solar-powered with battery backup"
+      ],
+      "specifications": {
+        "weight": "2.5 kg",
+        "dimensions": "35 x 30 x 25 cm",
+        "materials": "Plastic, aluminum sensors",
+        "care": "Clean sensors monthly"
+      }
     },
     {
       "id": 11,
@@ -110,7 +231,19 @@
       "price": 45,
       "category": "seeds",
       "image": "https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "HarvestSeeds Co"
+      "seller": "HarvestSeeds Co",
+      "features": [
+        "Includes soil, trays, and seeds",
+        "Harvest in just 7–10 days",
+        "Perfect for indoor growing",
+        "Reusable and eco-friendly"
+      ],
+      "specifications": {
+        "weight": "1.5 kg",
+        "dimensions": "40 x 30 x 8 cm",
+        "materials": "Biodegradable trays, organic seeds",
+        "care": "Water daily and keep in sunlight"
+      }
     },
     {
       "id": 12,
@@ -119,9 +252,22 @@
       "price": 199.99,
       "category": "software",
       "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800",
-      "seller": "TechFarm Devices"
+      "seller": "TechFarm Devices",
+      "features": [
+        "Crop rotation planner",
+        "Expense and yield tracking",
+        "Multi-user support",
+        "Cloud-based with mobile access"
+      ],
+      "specifications": {
+        "weight": "Digital Product",
+        "dimensions": "N/A",
+        "materials": "Web-based software",
+        "care": "Requires internet connection"
+      }
     }
   ],
+
   "services": [
     {
       "id": 1,

@@ -21,7 +21,10 @@ const ProductCard = ({ product }: { product: any }) => {
             ${product.price}
           </span>
           <Button variant="primary" size="sm">
-            <Link href="/products" className="block px-2 py-2 text-xs">
+            <Link
+              href={`/products/${product.id}`}
+              className="block px-2 py-2 text-xs"
+            >
               View Details
             </Link>
           </Button>
