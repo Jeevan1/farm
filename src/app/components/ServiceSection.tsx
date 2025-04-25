@@ -6,9 +6,8 @@ import Button from './ui/Button';
 import Link from 'next/link';
 
 const ServiceSection = async () => {
-  const { data, error, loading }: ApiResponse<any> = await apiService(
-    'http://localhost:3000/data.json',
-  );
+  const { data, error, loading }: ApiResponse<any> =
+    await apiService('/data.json');
   return (
     <section className="bg-muted/30 py-16">
       <div className="container">

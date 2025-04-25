@@ -6,9 +6,8 @@ import ServiceSection from '../components/ServiceSection';
 import CTASection from '../components/CTASection';
 
 const HomePage = async () => {
-  const { data, error, loading }: ApiResponse<any> = await apiService(
-    'http://localhost:3000/data.json',
-  );
+  const { data, error, loading }: ApiResponse<any> =
+    await apiService('/data.json');
   return (
     <div className="">
       <Banner />

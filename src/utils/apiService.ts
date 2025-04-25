@@ -1,4 +1,5 @@
 // lib/apiService.ts
+import data from '../../public/data.json';
 
 export type ApiResponse<T> = {
   data: T | null;
@@ -14,16 +15,16 @@ export async function apiService<T>(url: string): Promise<ApiResponse<T>> {
   };
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch. Status: ${res.status}`);
-    }
-    const json = await res.json();
-    response = {
-      data: json,
+    // const res = await fetch(url);
+    // if (!res.ok) {
+    //   throw new Error(`Failed to fetch. Status: ${res.status}`);
+    // }
+    // const json = await res.json();
+    const res = (response = {
+      data: data,
       error: null,
       loading: false,
-    };
+    });
   } catch (error: any) {
     response = {
       data: null,

@@ -4,9 +4,8 @@ import { ApiResponse, apiService } from '@/utils/apiService';
 import React from 'react';
 
 const SellersPage = async () => {
-  const { data, error, loading }: ApiResponse<any> = await apiService(
-    'http://localhost:3000/data.json',
-  );
+  const { data, error, loading }: ApiResponse<any> =
+    await apiService('/data.json');
   return (
     <div className="">
       <HeroSection
