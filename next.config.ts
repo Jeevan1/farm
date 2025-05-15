@@ -3,7 +3,12 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['res.cloudinary.com', 'images.unsplash.com'],
+    domains: [
+      'res.cloudinary.com',
+      'cdn.shopify.com',
+      'images.unsplash.com',
+      'via.placeholder.com',
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,

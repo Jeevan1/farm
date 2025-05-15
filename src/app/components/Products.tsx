@@ -1,60 +1,126 @@
 'use client';
 import { Filter, Search } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from './ui/Input';
 import Button from './ui/Button';
 import Slider from './ui/Slider';
 import Checkbox from './ui/Checkbox';
 import ProductCard from './ui/ProductCard';
+import { apiService } from '@/utils/apiService';
 
 const Products = ({
   products,
   categories,
 }: {
-  products: any[];
+  products: {
+    products: any[];
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
   categories: any[];
 }) => {
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  let maxPrice = 1000;
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+  const endCursorRef = useRef(filteredProducts?.endCursor);
+  const hasNextPageRef = useRef(filteredProducts?.hasNextPage);
 
-  const toggleCategory = (category: string) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(
-        selectedCategories.filter((name) => name !== category),
-      );
-    } else {
-      setSelectedCategories([...selectedCategories, category]);
-    }
-  };
-
-  const filteredProducts = products.filter((product) => {
-    // Filter by search term
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase());
-
-    // Filter by price range
-    const matchesPrice =
-      product.price >= priceRange && product.price <= maxPrice;
-
-    // Filter by category
-    const matchesCategory =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(product.category);
-
-    return matchesSearch && matchesPrice && matchesCategory;
-  });
+  const maxPrice = 1000;
 
   const toggleMobileFilters = () => {
     setShowMobileFilters(!showMobileFilters);
   };
+
+  const fetchProducts = async (
+    cursor: string | null = null,
+    reset = false,
+    currentSearch = searchTerm,
+    currentPrice = priceRange,
+    currentCategories = selectedCategories,
+  ) => {
+    setLoading(true);
+
+    const cursorParam = cursor ? `&after=${cursor}` : '';
+    const queryParam = currentSearch ? `&query=${currentSearch}` : '';
+    const priceParam = currentPrice ? `&minPrice=${currentPrice}` : '';
+    const categoriesParam =
+      currentCategories.length > 0
+        ? `&categories=${currentCategories.join(',')}`
+        : '';
+
+    const { data } = await apiService<any>(
+      `/product?first=30${cursorParam}${queryParam}${priceParam}${categoriesParam}`,
+    );
+
+    if (reset || !cursor) {
+      setFilteredProducts(data);
+    } else {
+      setFilteredProducts((prev) => ({
+        ...data,
+        products: [...prev.products, ...data.products],
+      }));
+    }
+
+    setLoading(false);
+  };
+
+  // Keep cursor refs updated
+  useEffect(() => {
+    endCursorRef.current = filteredProducts?.endCursor;
+    hasNextPageRef.current = filteredProducts?.hasNextPage;
+  }, [filteredProducts]);
+
+  // Re-fetch when filters change
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      fetchProducts(null, true);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [priceRange, searchTerm, selectedCategories]);
+
+  // Infinite scroll
+  useEffect(() => {
+    const ref = loaderRef.current;
+    if (!ref) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting && hasNextPageRef.current && !loading) {
+          fetchProducts(
+            endCursorRef.current,
+            false,
+            searchTerm,
+            priceRange,
+            selectedCategories,
+          );
+        }
+      },
+      { rootMargin: '100px' },
+    );
+
+    observer.observe(ref);
+    return () => {
+      if (ref) observer.unobserve(ref);
+    };
+  }, [searchTerm, priceRange, selectedCategories, loading]);
+
+  const toggleCategory = (categoryName: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(categoryName)
+        ? prev.filter((name) => name !== categoryName)
+        : [...prev, categoryName],
+    );
+  };
+
   return (
     <div className="container py-16">
+      {/* Search and Filter Toggle */}
       <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div className="relative w-full max-w-md md:w-auto md:flex-1">
           <Search
@@ -63,11 +129,9 @@ const Products = ({
           />
           <Input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search products?..."
             value={searchTerm}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setSearchTerm(e.target.value)
-            }
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
           />
         </div>
@@ -80,7 +144,9 @@ const Products = ({
           Filters
         </Button>
       </div>
+
       <div className="flex flex-col gap-8 lg:flex-row">
+        {/* Sidebar Filters */}
         <div className="hidden w-64 flex-shrink-0 lg:block">
           <div className="sticky top-32 rounded-lg border border-gray-200 bg-white p-6">
             <h3 className="mb-4 text-lg font-semibold text-gray-800">
@@ -92,11 +158,10 @@ const Products = ({
                 Price Range
               </h4>
               <Slider
-                max={1000}
+                max={maxPrice}
                 step={1}
                 value={priceRange}
                 onChange={(e: any) => setPriceRange(e.target.value)}
-                className="mb-2"
               />
               <div className="flex justify-between text-sm text-gray-500">
                 <span>${priceRange}</span>
@@ -116,7 +181,7 @@ const Products = ({
                       checked={selectedCategories.includes(
                         category.name.toLowerCase(),
                       )}
-                      onChange={() =>
+                      onCheckedChange={() =>
                         toggleCategory(category.name.toLowerCase())
                       }
                       className="text-agro-primary"
@@ -144,6 +209,7 @@ const Products = ({
             </Button>
           </div>
         </div>
+
         {/* Mobile Filters */}
         {showMobileFilters && (
           <div className="fixed inset-0 z-50 bg-black/40 lg:hidden">
@@ -160,18 +226,15 @@ const Products = ({
                 </Button>
               </div>
 
-              {/* Price Range Filter */}
               <div className="mb-6">
                 <h4 className="mb-3 text-sm font-medium text-gray-700">
                   Price Range
                 </h4>
                 <Slider
-                  defaultValue={[0, 200]}
-                  max={200}
+                  max={maxPrice}
                   step={1}
                   value={priceRange}
-                  onValueChange={setPriceRange}
-                  className="mb-2"
+                  onChange={(e: any) => setPriceRange(e.target.value)}
                 />
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>${priceRange}</span>
@@ -179,7 +242,6 @@ const Products = ({
                 </div>
               </div>
 
-              {/* Category Filter */}
               <div>
                 <h4 className="mb-3 text-sm font-medium text-gray-700">
                   Categories
@@ -189,8 +251,12 @@ const Products = ({
                     <div key={category.id} className="flex items-center">
                       <Checkbox
                         id={`mobile-category-${category.id}`}
-                        checked={selectedCategories.includes(category.id)}
-                        onChange={() => toggleCategory(category.id)}
+                        checked={selectedCategories.includes(
+                          category.name.toLowerCase(),
+                        )}
+                        onCheckedChange={() =>
+                          toggleCategory(category.name.toLowerCase())
+                        }
                         className="text-agro-primary"
                       />
                       <label
@@ -204,7 +270,6 @@ const Products = ({
                 </div>
               </div>
 
-              {/* Apply and Clear Buttons */}
               <div className="mt-6 space-y-2">
                 <Button
                   className="bg-agro-primary hover:bg-agro-dark w-full"
@@ -226,8 +291,23 @@ const Products = ({
             </div>
           </div>
         )}
+
+        {/* Product Grid */}
         <div className="flex-1">
-          {filteredProducts.length === 0 ? (
+          {loading && !filteredProducts?.products?.length ? (
+            <div className="flex items-center justify-center">
+              <div className="w-full animate-pulse space-y-8">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="space-y-4">
+                      <div className="h-48 rounded bg-gray-200"></div>
+                      <div className="h-10 rounded bg-gray-200"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : filteredProducts?.products?.length === 0 && !loading ? (
             <div className="rounded-lg bg-gray-50 p-8 text-center">
               <p className="text-lg text-gray-600">
                 No products match your filters.
@@ -245,11 +325,28 @@ const Products = ({
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredProducts?.products?.map((product: any, index) => (
+                  <ProductCard key={index} product={product} />
+                ))}
+              </div>
+
+              <div ref={loaderRef} className="mt-8 flex justify-center">
+                {loading && (
+                  <div className="w-full animate-pulse space-y-8">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="space-y-4">
+                          <div className="h-48 rounded bg-gray-200"></div>
+                          <div className="h-10 rounded bg-gray-200"></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>

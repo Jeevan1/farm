@@ -5,7 +5,7 @@ import React from 'react';
 
 const ProductsPage = async () => {
   const { data, error, loading }: ApiResponse<any> =
-    await apiService('/data.json');
+    await apiService('/product?first=30');
   return (
     <div>
       <HeroSection
@@ -13,7 +13,7 @@ const ProductsPage = async () => {
         subtitle="Discover the best farming tools and fresh agricultural products."
       />
       <div className="">
-        <Products products={data.products} categories={data.categories} />
+        <Products products={data} categories={data?.categories || []} />
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
-// lib/apiService.ts
-import data from '../../public/data.json';
-
 export type ApiResponse<T> = {
   data: T | null;
   error: string | null;
   loading: boolean;
 };
 
-export async function apiService<T>(url: string): Promise<ApiResponse<T>> {
+export async function apiService<T>(
+  endpoint: string,
+  options: RequestInit = {},
+): Promise<ApiResponse<T>> {
   let response: ApiResponse<T> = {
     data: null,
     error: null,
@@ -15,16 +15,21 @@ export async function apiService<T>(url: string): Promise<ApiResponse<T>> {
   };
 
   try {
-    // const res = await fetch(url);
-    // if (!res.ok) {
-    //   throw new Error(`Failed to fetch. Status: ${res.status}`);
-    // }
-    // const json = await res.json();
-    const res = (response = {
-      data: data,
+    const res = await fetch(`http://localhost:3000/api${endpoint}`, {
+      headers: { 'Content-Type': 'application/json', ...options.headers },
+      ...options,
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch. Status: ${res.status}`);
+    }
+
+    const json = await res.json();
+    response = {
+      data: json,
       error: null,
       loading: false,
-    });
+    };
   } catch (error: any) {
     response = {
       data: null,

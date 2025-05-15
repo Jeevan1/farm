@@ -22,7 +22,12 @@ const ProductDetails = async ({
     return apiService('http://localhost:3000/data.json');
   })();
 
-  const uniqueProducts = data.products.find((p: any) => p.id === Number(id));
+  const res = await fetch(`http://localhost:3000/api/product/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const json = await res.json();
 
   if (loading) {
     return (
@@ -45,7 +50,7 @@ const ProductDetails = async ({
     );
   }
 
-  if (!uniqueProducts) {
+  if (!json) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex min-h-[50vh] flex-col items-center justify-center">
@@ -85,8 +90,11 @@ const ProductDetails = async ({
           {/* Product Image */}
           <div>
             <Image
-              src={uniqueProducts.image}
-              alt={uniqueProducts.name}
+              src={
+                json.images?.edges[0]?.node?.originalSrc ||
+                'https://images.unsplash.com/photo-1575224300306-1b8da36134ec?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=800'
+              }
+              alt={json?.title}
               width={500}
               height={500}
               className="aspect-square h-auto w-full rounded-lg object-cover shadow-md"
@@ -96,16 +104,16 @@ const ProductDetails = async ({
           <div className="space-y-6">
             <div>
               <h1 className="mb-2 text-3xl font-bold text-gray-900">
-                {uniqueProducts.name}
+                {json?.title}
               </h1>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <span className="flex items-center">
+                {/* <span className="flex items-center">
                   <Package2 className="mr-1 h-4 w-4" />
                   SKU: {uniqueProducts.sku}
-                </span>
+                </span> */}
                 <span className="flex items-center">
                   <Tag className="mr-1 h-4 w-4" />
-                  {uniqueProducts.category}
+                  {json?.category?.name || 'No Category'}
                 </span>
               </div>
             </div>
@@ -113,9 +121,9 @@ const ProductDetails = async ({
             <div className="border-t border-b py-4">
               <div className="flex items-baseline justify-between">
                 <span className="text-3xl font-bold text-gray-900">
-                  ${uniqueProducts.price}
+                  ${json?.priceRange?.minVariantPrice?.amount}
                 </span>
-                <span
+                {/* <span
                   className={`rounded-full px-3 py-1 text-sm ${
                     uniqueProducts.status === 'in-stock'
                       ? 'bg-green-100 text-green-800'
@@ -129,18 +137,22 @@ const ProductDetails = async ({
                     : uniqueProducts.status === 'low-stock'
                       ? 'Low Stock'
                       : 'Out of Stock'}
-                </span>
+                </span> */}
               </div>
               <p className="mt-1 text-sm text-gray-500">
-                {uniqueProducts.stock || 0} units available
+                {json?.totalInventory || 0} units available
               </p>
             </div>
 
             <div>
               <h2 className="mb-2 text-lg font-semibold">Description</h2>
-              <p className="text-gray-600">{uniqueProducts.description}</p>
+              <p
+                className="text-gray-600"
+                dangerouslySetInnerHTML={{ __html: json?.descriptionHtml }}
+              ></p>
             </div>
             <QuickAddCartForm />
+            {/* 
             <div>
               <h2 className="mb-2 text-lg font-semibold">Key Features</h2>
               <ul className="list-inside list-disc space-y-1 text-gray-600">
@@ -170,15 +182,15 @@ const ProductDetails = async ({
                   </div>
                 </div>
               </div>
-            </div>
+              </div> */}
           </div>
         </div>
       </div>
-      <ProductSection
+      {/* <ProductSection
         title="Related Products"
         subtitle=""
         data={data.products}
-      />
+      /> */}
     </div>
   );
 };

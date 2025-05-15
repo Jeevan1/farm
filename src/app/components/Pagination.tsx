@@ -56,7 +56,7 @@ export default function Pagination({
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-50"
+        className="flex cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-1.5 py-1.5 hover:bg-gray-100 disabled:opacity-50"
         aria-label="Previous page"
       >
         <ChevronLeft className="h-5 w-5" />
@@ -67,9 +67,9 @@ export default function Pagination({
         <>
           <button
             onClick={() => handlePageChange(1)}
-            className={`rounded-md border px-3 py-1 ${
+            className={`cursor-pointer rounded-md border border-gray-200 px-3 py-1 ${
               currentPage === 1
-                ? 'bg-blue-500 text-white'
+                ? 'bg-primary text-white'
                 : 'bg-white text-black hover:bg-gray-100'
             }`}
           >
@@ -84,9 +84,9 @@ export default function Pagination({
         <button
           key={page}
           onClick={() => handlePageChange(page)}
-          className={`rounded-md border px-3 py-1 ${
+          className={`cursor-pointer rounded-md border border-gray-200 px-3 py-1 ${
             currentPage === page
-              ? 'bg-blue-500 text-white'
+              ? 'bg-primary text-white'
               : 'bg-white text-black hover:bg-gray-100'
           }`}
         >
@@ -102,9 +102,9 @@ export default function Pagination({
           )}
           <button
             onClick={() => handlePageChange(totalPages)}
-            className={`rounded-md border px-3 py-1 ${
+            className={`cursor-pointer rounded-md border border-gray-200 px-3 py-1 ${
               currentPage === totalPages
-                ? 'bg-blue-500 text-white'
+                ? 'bg-primary text-white'
                 : 'bg-white text-black hover:bg-gray-100'
             }`}
           >
@@ -117,7 +117,7 @@ export default function Pagination({
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-50"
+        className="flex cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-1.5 py-1.5 hover:bg-gray-100 disabled:opacity-50"
         aria-label="Next page"
       >
         <ChevronRight className="h-5 w-5" />
