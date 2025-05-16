@@ -12,9 +12,7 @@ const SellersPage = async () => {
         title=" Verified Sellers"
         subtitle="Discover the best farming tools and fresh agricultural products."
       />
-      <div className="">
-        <SellerSection sellers={data.sellers} />
-      </div>
+      <div className="">{/* <SellerSection sellers={data.sellers} /> */}</div>
     </div>
   );
 };
