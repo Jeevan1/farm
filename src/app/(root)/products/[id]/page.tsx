@@ -22,11 +22,14 @@ const ProductDetails = async ({
     return apiService('http://localhost:3000/data.json');
   })();
 
-  const res = await fetch(`http://localhost:3000/api/product/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_FRONTEND_URL}/product/${id}`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     },
-  });
+  );
   const json = await res.json();
 
   if (loading) {
