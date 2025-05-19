@@ -15,7 +15,7 @@ export async function apiService<T>(
   };
 
   try {
-    const res = await fetch(`https://farm.sthajeevan.com.np/api${endpoint}`, {
+    const res = await fetch(`http://localhost:3000/api${endpoint}`, {
       headers: { 'Content-Type': 'application/json', ...options.headers },
       ...options,
     });

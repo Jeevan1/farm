@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { CartProvider } from '@/providers/CartProvider';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: 'FarmMart',
@@ -13,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+        <ToastContainer position="bottom-right" />
+      </body>
     </html>
   );
 }

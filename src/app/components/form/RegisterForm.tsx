@@ -3,6 +3,9 @@ import React from 'react';
 import Input from '../ui/Input';
 import Link from 'next/link';
 import Button from '../ui/Button';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const registerFields = [
   {
@@ -48,9 +51,59 @@ const registerFields = [
 ];
 
 const RegisterForm = () => {
+  const router = useRouter();
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const firstName = formData.get('fname') as string;
+    const lastName = formData.get('lname') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const password = formData.get('password') as string;
+    const confirmPassword = formData.get('confirmPassword') as string;
+    const acceptsMarketing = true;
+
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          password,
+          acceptsMarketing,
+        }),
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error?.error || 'Failed to register');
+        return;
+      }
+
+      const data = await res.json();
+      toast.success('Register successful');
+      router.push('/signin');
+      console.log('data', data);
+    } catch (err) {
+      toast.error('Something went wrong');
+      console.error(err);
+    }
+  };
+
   return (
     <div className="rounded-lg bg-white p-4 shadow-md md:min-w-sm md:p-6">
-      <form action="" className="space-y-6">
+      <form action="" className="space-y-6" onSubmit={handleRegister}>
         <div className="grid grid-cols-2 gap-4">
           {registerFields.map((field) => (
             <div className={`space-y-2 ${field.width}`}>
@@ -79,7 +132,7 @@ const RegisterForm = () => {
             Remember me
           </label>
         </div>
-        <Button variant="primary" className="h-10 w-full">
+        <Button variant="primary" type="submit" className="h-10 w-full">
           Sign In
         </Button>
         <div className="mt-6">

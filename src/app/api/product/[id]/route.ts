@@ -38,6 +38,13 @@ export async function GET(
             }
           }
         }
+        variants(first: 1) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
       }
     }
   `;

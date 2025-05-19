@@ -151,7 +151,7 @@ const ProductDetails = async ({
                 dangerouslySetInnerHTML={{ __html: json?.descriptionHtml }}
               ></p>
             </div>
-            <QuickAddCartForm />
+            <QuickAddCartForm product={json} />
             {/* 
             <div>
               <h2 className="mb-2 text-lg font-semibold">Key Features</h2>

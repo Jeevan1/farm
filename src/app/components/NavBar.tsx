@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import CartIcon from './cart/CartIcon';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -73,16 +77,33 @@ const Navbar = () => {
             >
               Join as Seller
             </Link>
-            <Link href="/signin">
-              <button className="hover:text-agro-primary text-gray-700">
-                Sign In
+            {Cookies.get('token') ? (
+              <button
+                onClick={() => {
+                  Cookies.remove('token');
+                  router.push('/signin');
+                }}
+                className="cursor-pointer text-gray-700 hover:text-primary"
+              >
+                Sign Out
               </button>
-            </Link>
-            <Link href="/register">
-              <button className="hover:text-agro-primary text-gray-700">
-                Register
-              </button>
-            </Link>
+            ) : (
+              <>
+                <Link href="/signin">
+                  <button className="cursor-pointer text-gray-700 hover:text-primary">
+                    Sign In
+                  </button>
+                </Link>
+                <Link href="/register">
+                  <button className="cursor-pointer text-gray-700 hover:text-primary">
+                    Register
+                  </button>
+                </Link>
+              </>
+            )}
+            <div className="flex items-center">
+              <CartIcon />
+            </div>
           </div>
 
           {/* Mobile menu button */}

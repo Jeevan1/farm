@@ -67,7 +67,6 @@ export async function GET(request: NextRequest) {
   const minPrice = variables.minPrice ?? 0;
   const maxPrice = variables.maxPrice ?? 100000;
 
-  // Remove price filter from query string (since it's not supported in Storefront API)
   const queryString = variables.query || '';
   const finalQuery = queryString.trim();
 

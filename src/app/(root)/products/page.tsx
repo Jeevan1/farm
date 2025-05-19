@@ -3,6 +3,12 @@ import Products from '@/app/components/Products';
 import { ApiResponse, apiService } from '@/utils/apiService';
 import React from 'react';
 
+export const metadata = {
+  title: 'Products',
+  description:
+    'Discover the best farming tools and fresh agricultural products.',
+};
+
 const ProductsPage = async () => {
   const { data, error, loading }: ApiResponse<any> =
     await apiService('/product?first=30');

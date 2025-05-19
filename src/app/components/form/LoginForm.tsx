@@ -3,16 +3,48 @@ import React from 'react';
 import Input from '../ui/Input';
 import Link from 'next/link';
 import Button from '../ui/Button';
+import { toast } from 'react-toastify';
+
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
+  const router = useRouter();
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    const res = await fetch('/api/user/token', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!res.ok) {
+      toast.error('Invalid credentials');
+      throw new Error('Failed to login');
+    }
+
+    const data = await res.json();
+    toast.success('Login successful');
+    Cookies.set('token', data.token);
+    router.push('/');
+    console.log('data', data);
+  };
   return (
     <div className="rounded-lg bg-white p-4 shadow-md md:min-w-sm md:p-6">
-      <form action="" className="space-y-6">
+      <form action="" className="space-y-6" onSubmit={handleLogin}>
         <div className="space-y-2">
           <label htmlFor="email" className="block text-sm font-medium">
             Email Address
           </label>
-          <Input type="email" name="email" placeholder="you@example.com" />
+          <Input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+          />
         </div>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
@@ -23,7 +55,12 @@ const LoginForm = () => {
               Forgot Your Password?
             </Link>
           </div>
-          <Input type="password" name="password" placeholder="••••••••" />
+          <Input
+            type="password"
+            name="password"
+            required
+            placeholder="••••••••"
+          />
         </div>
         <div className="flex items-center gap-2">
           <input
@@ -36,7 +73,7 @@ const LoginForm = () => {
             Remember me
           </label>
         </div>
-        <Button variant="primary" className="h-10 w-full">
+        <Button type="submit" variant="primary" className="h-10 w-full">
           Sign In
         </Button>
         <div className="mt-6">
